@@ -37,3 +37,7 @@ Object-and-Emotion-Recognition-Project/
    ```bash
    git clone https://github.com/your-username/object-emotion-recognition.git
    cd object-emotion-recognition
+
+
+⚠️ Unable to upload yolov3.weights because of uploading limit 25MB in GitHub 
+
