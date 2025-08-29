@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object and Emotion Recognition</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Object and Emotion Recognition</h1>
+        <div>
+            <button class="start" onclick="startCamera()"><span>Start Camera</span></button>
+            <button class="stop" onclick="stopCamera()"><span>Stop Camera</span></button>
+        </div>
+        <div>
+            <img id="videoFeed" src="{{ url_for('video_feed') }}">
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 Your Company. All rights reserved.
+    </footer>
+    <script>
+        function startCamera() {
+            fetch('/start', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    updateVideoFeed();
+                });
+        }
+
+        function stopCamera() {
+            fetch('/stop', { method: 'POST' })
+                .then(response => response.text())
+                .then(data => {
+                    console.log(data);
+                    updateVideoFeed();
+                });
+        }
+
+        function updateVideoFeed() {
+            const videoFeed = document.getElementById('videoFeed');
+            videoFeed.src = "{{ url_for('video_feed') }}?t=" + new Date().getTime();
+        }
+    </script>
+</body>
+</html>
